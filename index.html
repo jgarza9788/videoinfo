@@ -10,10 +10,13 @@
       <div>
         <label>Select a video</label>
         <br/>
-        <input type="file" accept="video/*"/>
+        <input type="file" accept="video/*" onChange="getVideoInfo()"/>
       </div>
       <button tyep= "submit">Get Info</button>
     </form>
+
+    <h1 id="result"></h1>
+
 
     <!--info-->
     <div style="display:none">
@@ -27,6 +30,12 @@
       const electron = require('electron');
       const {ipcRenderer} = electron;
 
+      function getVideoInfo() 
+      {
+        const {path} = document.querySelector('input').files[0];
+        ipcRenderer.send('video:submit',path);
+      }
+
       document.querySelector('form').addEventListener('submit',(event)=>
       {
         event.preventDefault();
@@ -34,6 +43,11 @@
         const {path} = document.querySelector('input').files[0];
 
         ipcRenderer.send('video:submit',path);
+      });
+
+      ipcRenderer.on('video:metadata',(event,duration)=>
+      {
+        document.querySelector('#result').innerHTML = 'Video is ' + duration + ' seconds';
       });
     </script>
 
