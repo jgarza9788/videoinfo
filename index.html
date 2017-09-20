@@ -2,12 +2,40 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>VideoInfo</title>
   </head>
   <body>
-    <h1>Hello World!</h1>
-    We are using node <script>document.write(process.versions.node)</script>,
-    Chrome <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+    <h1>VideoInfo</h1>
+    <form>
+      <div>
+        <label>Select a video</label>
+        <br/>
+        <input type="file" accept="video/*"/>
+      </div>
+      <button tyep= "submit">Get Info</button>
+    </form>
+
+    <!--info-->
+    <div style="display:none">
+      We are using node <script>document.write(process.versions.node)</script>,
+      Chrome <script>document.write(process.versions.chrome)</script>,
+      and Electron <script>document.write(process.versions.electron)</script>.
+    </div>
+
+    <!--script-->
+    <script>
+      const electron = require('electron');
+      const {ipcRenderer} = electron;
+
+      document.querySelector('form').addEventListener('submit',(event)=>
+      {
+        event.preventDefault();
+        // const file = document.querySelector('input').files[0];
+        const {path} = document.querySelector('input').files[0];
+
+        ipcRenderer.send('video:submit',path);
+      });
+    </script>
+
   </body>
 </html>
