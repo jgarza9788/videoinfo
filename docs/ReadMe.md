@@ -2,6 +2,8 @@ VideoInfo
 --------------
 An Electron app that reads metadata about video files and displays it.
 
+![https://github.com/jgarza9788/videoinfo/blob/master/docs/images/Screenshot_v0.1.png](https://raw.githubusercontent.com/jgarza9788/videoinfo/master/docs/images/Screenshot_v0.1.png)
+
 Version: v0.1
 
 # Requirements
@@ -50,5 +52,6 @@ npm start
 
 ## ffmpeg path
 
-![Image](https://github.com/jgarza9788/videoinfo/tree/master/docs/images/TS_ffmpegPath.png)
+In index.js line 37 the path to ffprobe.exe will need to be changed depending on your system and how you installed ffmpeg.
 
+![https://github.com/jgarza9788/videoinfo/blob/master/docs/images/TS_ffmpegPath.png](https://raw.githubusercontent.com/jgarza9788/videoinfo/master/docs/images/TS_ffmpegPath.png)
